@@ -1,10 +1,11 @@
 """Fetch mortality data from Social Security Administration."""
 
-import re
 import json
-from pathlib import Path
-from typing import Dict, Tuple, Optional
+import re
 from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Dict, Optional, Tuple
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -89,8 +90,11 @@ class SSATableFetcher:
 
     def _fetch_from_web(self) -> Tuple[Dict[int, float], Dict[int, float]]:
         """Fetch mortality tables from SSA website."""
-        response = requests.get(self.BASE_URL)
-        response.raise_for_status()
+        try:
+            response = requests.get(self.BASE_URL)
+            response.raise_for_status()
+        except requests.RequestException:
+            return self._get_fallback_data()
 
         soup = BeautifulSoup(response.text, "html.parser")
 

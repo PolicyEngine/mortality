@@ -1,11 +1,12 @@
 """Core mortality calculations."""
 
-import numpy as np
-from typing import Literal, Optional
 from functools import lru_cache
+from typing import Literal, Optional
 
-from .factors import MortalityFactors
+import numpy as np
+
 from .data import get_base_rates
+from .factors import MortalityFactors
 
 
 class Mortality:
@@ -119,7 +120,7 @@ class Mortality:
 
         # Use trapezoidal rule for integration
         # Each year survived contributes to life expectancy
-        return np.trapz(survival, dx=1.0)
+        return np.trapezoid(survival, dx=1.0)
 
     def simulate(self, age: int, n_sims: int = 1000, max_age: int = 120) -> np.ndarray:
         """Simulate death ages using Monte Carlo.

@@ -4,9 +4,11 @@ This is the v1 implementation focused on providing clean, easy access
 to SSA mortality data with basic calculations.
 """
 
-import numpy as np
-from typing import Dict, Tuple, Optional, Literal
 from functools import lru_cache
+from typing import Literal, Optional, Tuple
+
+import numpy as np
+
 from .fetchers import fetch_ssa_table
 
 

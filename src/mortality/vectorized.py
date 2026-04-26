@@ -6,9 +6,9 @@ Key improvements:
 3. Handles population heterogeneity correctly
 """
 
+from typing import Optional, Tuple, Union
+
 import numpy as np
-from typing import Optional, Literal, Union, Tuple
-from functools import lru_cache
 
 
 class VectorizedMortality:
@@ -321,7 +321,7 @@ def benchmark_vectorized():
     print(f"Speed: {n_sims/vectorized_time:.0f} simulations/second")
 
     # Results
-    print(f"\nResults:")
+    print("\nResults:")
     print(f"Median death age: {np.median(death_ages):.1f}")
     print(f"10th percentile: {np.percentile(death_ages, 10):.1f}")
     print(f"90th percentile: {np.percentile(death_ages, 90):.1f}")
@@ -336,7 +336,7 @@ def benchmark_vectorized():
 
     life_exp_simple = np.mean(death_ages_simple - 65)
     print(f"Population life expectancy at 65: {life_exp_simple:.1f} years")
-    print(f"Expected (SSA male): ~18 years")
+    print("Expected (SSA male): ~18 years")
 
     # Adjusted population should also average correctly
     life_exp_adjusted = np.mean(death_ages - 65)

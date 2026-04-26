@@ -5,9 +5,11 @@ the effects of smoking, income, education, etc. We need to adjust from
 the population average to the individual, not compound effects.
 """
 
-import numpy as np
-from typing import Dict, Optional, Literal
 from dataclasses import dataclass
+from typing import Literal, Optional
+
+import numpy as np
+
 from .data import get_base_rates
 
 

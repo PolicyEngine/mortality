@@ -8,9 +8,10 @@ The problem with independent multipliers:
 The solution: Use conditional probabilities from microdata or research.
 """
 
-import numpy as np
-from typing import Optional, Dict, Tuple
 from dataclasses import dataclass
+from typing import Dict
+
+import numpy as np
 
 
 @dataclass
@@ -114,7 +115,7 @@ class ConditionalMortalityModel:
         This properly accounts for correlations in the population.
         """
         # First calculate the raw multiplier
-        quintile = cls.get_income_quintile(income_percentile)
+        cls.get_income_quintile(income_percentile)
 
         # Income effect (each decile = 6% reduction)
         income_decile = income_percentile / 10
@@ -217,19 +218,19 @@ def demonstrate_conditional_model():
 
     # High risk: low income smoker with poor health
     high_risk = model.get_calibrated_multiplier(10, True, "poor")
-    print(f"Low income (10th percentile) smoker with poor health:")
+    print("Low income (10th percentile) smoker with poor health:")
     print(f"  Mortality multiplier: {high_risk:.2f}x")
     print(f"  Expected lifespan reduction: ~{(high_risk - 1) * 10:.0f} years")
 
     # Low risk: high income non-smoker with excellent health
     low_risk = model.get_calibrated_multiplier(90, False, "excellent")
-    print(f"\nHigh income (90th percentile) non-smoker with excellent health:")
+    print("\nHigh income (90th percentile) non-smoker with excellent health:")
     print(f"  Mortality multiplier: {low_risk:.2f}x")
     print(f"  Expected lifespan increase: ~{(1 - low_risk) * 10:.0f} years")
 
     # Average person
     avg_person = model.get_calibrated_multiplier(50, False, "average")
-    print(f"\nMedian income non-smoker with average health:")
+    print("\nMedian income non-smoker with average health:")
     print(f"  Mortality multiplier: {avg_person:.2f}x")
 
     # Simulate population
@@ -239,9 +240,9 @@ def demonstrate_conditional_model():
     pop = model.simulate_realistic_population(10000)
 
     print(f"Average multiplier: {np.mean(pop['multipliers']):.4f}")
-    print(f"  (Should be exactly 1.0000 after calibration)")
+    print("  (Should be exactly 1.0000 after calibration)")
 
-    print(f"\nMultiplier distribution:")
+    print("\nMultiplier distribution:")
     print(f"  5th percentile: {np.percentile(pop['multipliers'], 5):.3f}x")
     print(f"  25th percentile: {np.percentile(pop['multipliers'], 25):.3f}x")
     print(f"  Median: {np.median(pop['multipliers']):.3f}x")

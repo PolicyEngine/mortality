@@ -6,11 +6,13 @@ Future versions will add more sophisticated mortality modeling.
 
 __version__ = "0.1.0"
 
+from .core import Mortality
+from .factors import MortalityFactors
 from .simple import (
-    get_mortality_rate,
-    get_life_expectancy,
-    simulate_survival,
     MortalityTable,
+    get_life_expectancy,
+    get_mortality_rate,
+    simulate_survival,
 )
 
 __all__ = [
@@ -18,4 +20,6 @@ __all__ = [
     "get_life_expectancy",
     "simulate_survival",
     "MortalityTable",
+    "Mortality",
+    "MortalityFactors",
 ]

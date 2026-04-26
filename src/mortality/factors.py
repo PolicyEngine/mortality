@@ -1,10 +1,11 @@
 """Personal factors affecting mortality, loaded from research data."""
 
-import yaml
-from pathlib import Path
 from dataclasses import dataclass
-from typing import Literal, Optional, Dict, Any
 from functools import lru_cache
+from pathlib import Path
+from typing import Any, Dict, Literal, Optional
+
+import yaml
 
 
 @lru_cache(maxsize=1)

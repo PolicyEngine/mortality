@@ -1,7 +1,8 @@
 """Mortality data management with automatic fetching and caching."""
 
-from typing import Dict, Literal
 from functools import lru_cache
+from typing import Dict, Literal
+
 from .fetchers import fetch_ssa_table
 
 

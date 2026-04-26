@@ -1,7 +1,7 @@
 """Tests for basic mortality calculations."""
 
-import pytest
 import numpy as np
+
 from mortality import Mortality, MortalityFactors
 
 

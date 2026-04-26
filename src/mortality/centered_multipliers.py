@@ -11,9 +11,10 @@ For example, if smokers are 15% of population with 1.8x mortality:
 This ensures: 0.15 * 1.61 + 0.85 * 0.89 = 1.0
 """
 
-import numpy as np
-from typing import Optional, Dict, Literal
 from dataclasses import dataclass
+from typing import Dict, Optional
+
+import numpy as np
 
 
 @dataclass
@@ -212,7 +213,7 @@ def demonstrate_centered_multipliers():
         exercise="vigorous",
     )
     print(
-        f"Healthy lifestyle (non-smoker, 80th percentile, good health, graduate, vigorous exercise):"
+        "Healthy lifestyle (non-smoker, 80th percentile, good health, graduate, vigorous exercise):"
     )
     print(f"  Combined multiplier: {healthy_mult:.2f}x")
     print(f"  Life expectancy impact: ~{(1/healthy_mult - 1) * 10:.1f} extra years")
@@ -221,7 +222,7 @@ def demonstrate_centered_multipliers():
     avg_mult = CenteredMultipliers.get_multiplier(
         health_status="average", income_percentile=50
     )
-    print(f"\nAverage person (average health, 50th percentile income):")
+    print("\nAverage person (average health, 50th percentile income):")
     print(f"  Combined multiplier: {avg_mult:.2f}x")
 
     # Profile 3: High risk
@@ -232,7 +233,7 @@ def demonstrate_centered_multipliers():
         education="less_than_high_school",
         exercise="none",
     )
-    print(f"\nHigh risk (smoker, 20th percentile, poor health, <HS, no exercise):")
+    print("\nHigh risk (smoker, 20th percentile, poor health, <HS, no exercise):")
     print(f"  Combined multiplier: {high_risk_mult:.2f}x")
     print(f"  Life expectancy impact: ~{(1 - 1/high_risk_mult) * 10:.1f} fewer years")
 
@@ -248,8 +249,8 @@ def demonstrate_centered_multipliers():
     income = np.clip(income, 1, 99)
 
     # Higher income -> more likely to have higher education
-    edu_prob = (income - 1) / 98  # 0 to 1
-    education = np.random.choice(
+    (income - 1) / 98  # 0 to 1
+    np.random.choice(
         list(CenteredMultipliers.EDUCATION["distribution"].keys()),
         size=n,
         p=list(CenteredMultipliers.EDUCATION["distribution"].values()),
@@ -288,19 +289,19 @@ def demonstrate_centered_multipliers():
     multipliers = np.array(multipliers)
 
     print(f"Population average multiplier: {np.mean(multipliers):.4f}")
-    print(f"  (Should be ~1.0 if properly centered)")
+    print("  (Should be ~1.0 if properly centered)")
     print(f"Median multiplier: {np.median(multipliers):.4f}")
     print(f"10th percentile: {np.percentile(multipliers, 10):.4f}")
     print(f"90th percentile: {np.percentile(multipliers, 90):.4f}")
 
     # Show correlation structure
     print("\nRealistic Correlations in Population:")
-    print(f"  Smoking rate by income tercile:")
+    print("  Smoking rate by income tercile:")
     print(f"    Bottom third: {np.mean(smoker[income < 33]):.1%}")
     print(f"    Middle third: {np.mean(smoker[(income >= 33) & (income < 67)]):.1%}")
     print(f"    Top third: {np.mean(smoker[income >= 67]):.1%}")
 
-    print(f"  Excellent/good health by income tercile:")
+    print("  Excellent/good health by income tercile:")
     bottom_good = np.mean(
         (health[income < 33] == "excellent") | (health[income < 33] == "good")
     )
