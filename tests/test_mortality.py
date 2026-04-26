@@ -220,6 +220,7 @@ class TestMonteCarlo:
 
     def test_simulate_median_reasonable(self):
         """Simulated median should match life expectancy roughly."""
+        np.random.seed(0)
         mort = Mortality(gender="male")
         death_ages = mort.simulate(age=65, n_sims=1000)
 
@@ -231,6 +232,7 @@ class TestMonteCarlo:
 
     def test_simulate_variability(self):
         """Simulations should show realistic variability."""
+        np.random.seed(0)
         mort = Mortality()
         death_ages = mort.simulate(age=65, n_sims=1000)
 

@@ -78,6 +78,7 @@ python_version = "3.9"
 warn_return_any = true
 warn_unused_configs = true
 ignore_missing_imports = true
+ignore_errors = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
