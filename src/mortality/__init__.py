@@ -10,12 +10,12 @@ from .simple import (
     get_mortality_rate,
     get_life_expectancy,
     simulate_survival,
-    MortalityTable
+    MortalityTable,
 )
 
 __all__ = [
     "get_mortality_rate",
     "get_life_expectancy",
     "simulate_survival",
-    "MortalityTable"
+    "MortalityTable",
 ]
